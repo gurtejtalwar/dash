@@ -1,8 +1,8 @@
 from datetime import datetime, timezone
 import re
 from pydantic import BaseModel
+from pydantic import BaseModel
 from bson import ObjectId
-
 
 def snake_to_camel(snake_str):
     """Converts a snake_case string to camelCase using regular expressions."""
@@ -54,6 +54,8 @@ def convert_dict_c2s(d, exceptions={}):
                 # Apply exception if the key is listed or convert it using camel_to_snake
                 # new_key = exception_keys.get(key, camel_to_snake(key))
                 new_key = camel_to_snake(key)
+                if isinstance(value, ObjectId):
+                    value = str(value)
                 new_dict[new_key] = recursive_convert(value)
             return new_dict
         elif isinstance(obj, list):

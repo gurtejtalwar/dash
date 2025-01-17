@@ -1,6 +1,7 @@
 from enum import StrEnum
 from mongoengine import (EnumField,
                          IntField,
+                         URLField,
                          EmbeddedDocument, 
                          EmbeddedDocumentField, 
                          StringField, ListField, 
@@ -39,7 +40,7 @@ class DBContent(EmbeddedDocument):
     filePath = StringField()
     question = StringField()
     answer = StringField()
-    link = StringField()
+    link = URLField()
 
 class DBKnowledgeBase(BaseDocument):
     name=StringField()
@@ -56,6 +57,7 @@ class DBKbResource(BaseDocument):
     ownerId=StringField()
     type=EnumField(KbResourceTypes)
     status=EnumField(KbResourceStatuses)
+    data=StringField()
     knowledgeBase=ReferenceField('DBKnowledgeBase',reverse_delete_rule=CASCADE)
     content=EmbeddedDocumentField(DBContent)
     tokensUsed=IntField()
