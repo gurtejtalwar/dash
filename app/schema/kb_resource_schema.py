@@ -1,17 +1,16 @@
 from pydantic import BaseModel
-from datetime import datetime
+from typing import Optional
 
 from app.models.knowledge_base_models import KbResourceTypes, KbResourceStatuses
 
 class Content(BaseModel):
-    file_name: str
-    file_path: str
-    question: str
-    answer: str
-    link: str
+    file_name: Optional[str] = None
+    file_path: Optional[str] = None
+    question: Optional[str] = None
+    answer: Optional[str] = None
+    link: Optional[str] = None
 
 class KBResourceIn(BaseModel):
     type: KbResourceTypes
     content: Content
     status: KbResourceStatuses
-    knowledge_base_id: str

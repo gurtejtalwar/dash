@@ -53,6 +53,7 @@ class DBKnowledgeBase(BaseDocument):
     meta = {'collection': 'knowledgeBase'}
 
 class DBKbResource(BaseDocument):
+    ownerId=StringField()
     type=EnumField(KbResourceTypes)
     status=EnumField(KbResourceStatuses)
     knowledgeBase=ReferenceField('DBKnowledgeBase',reverse_delete_rule=CASCADE)

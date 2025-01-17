@@ -7,13 +7,13 @@ from app.services import knowledge_base_service
 router = APIRouter(prefix="/v1/knowledgeBase")
 
 @router.get('/{knowledeBaseId}/{ownerId}')
-async def get_knowledge_base(knowledge_base_id: str, owner_id: str):
-    return True
+async def get_knowledge_base_by_id(knowledge_base_id: str, owner_id: str):
+    return True #TODO
 
-@router.get('/{ownerId}', response_model=FastUI)
-async def get_all_knowledge_bases(owner_id: str):
-    return True
+@router.get('/{ownerId}')
+async def get_all_knowledge_bases_by_owner(owner_id: str):
+    return True #TODO
 
 @router.post('/{ownerId}')
-async def create_knowledge_base(knowledge_base: KnowledgeBaseIn, owner_id: str):
-    return await knowledge_base_service.create_knowledge_base(knowledge_base, owner_id)
+async def create_knowledge_base(knowledge_base: KnowledgeBaseIn):
+    return await knowledge_base_service.create_knowledge_base(knowledge_base)
