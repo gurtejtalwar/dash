@@ -1,0 +1,7 @@
+crawl4ai
+fastapi
+fastui
+uvicorn
+logfire[fastapi]
+mongoengine
+pydantic_settings
