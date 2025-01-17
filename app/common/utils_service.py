@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 import re
-import json
+from pydantic import BaseModel
 from bson import ObjectId
 
 
@@ -22,6 +22,8 @@ def convert_dict_s2c(obj):
         new_dict = {}
         for k, v in obj.items():
             new_key = snake_to_camel(k)
+            if isinstance(v, BaseModel):
+                v = v.model_dump(exclude_none=True)
             new_dict[new_key] = convert_dict_s2c(
                 v)  # Recurse into sub-dictionaries
         return new_dict

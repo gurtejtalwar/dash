@@ -35,11 +35,11 @@ class KbResourceStatuses(StrEnum):
     deleted="DELETED"
 
 class DBContent(EmbeddedDocument):
-    fileName: str
-    filePath: str
-    question: str
-    answer: str
-    link: str
+    fileName = StringField()
+    filePath = StringField()
+    question = StringField()
+    answer = StringField()
+    link = StringField()
 
 class DBKnowledgeBase(BaseDocument):
     name=StringField()

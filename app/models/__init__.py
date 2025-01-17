@@ -8,7 +8,7 @@ class BaseDocument(Document):
     modifiedAt = DateTimeField(default=datetime.utcnow)
     
     def save(self, *args, **kwargs):
-        if not self.created_at:
+        if not self.createdAt:
             self.created_at = datetime.utcnow()
-        self.modified_at = datetime.utcnow()
+        self.modifiedAt = datetime.utcnow()
         return super().save(*args, **kwargs)
