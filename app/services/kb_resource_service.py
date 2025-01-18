@@ -21,6 +21,12 @@ async def create_kb_resource(kb_resource: KBResourceIn):
     kb_resource.data = data
     return await kb_resource_db.save_kb_resource(kb_resource)
 
+async def update_kb_resource(kb_resource: KBResourceIn):
+    return await kb_resource_db.update_kb_resource(kb_resource)
+
+async def delete_kb_resource(kb_resource_id: str):
+    return await kb_resource_db.delete_kb_resource(kb_resource_id)
+
 async def get_data(kb_resource: KBResourceIn):
     type_function_map = {
         KbResourceTypes.url: get_data_from_link,

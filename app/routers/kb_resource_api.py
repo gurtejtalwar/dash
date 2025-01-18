@@ -20,3 +20,11 @@ async def get_all_kb_resources_by_owner(owner_id: str):
 @router.post('/{ownerId}')
 async def create_kb_resource(kb_resource: KBResourceIn):
     return await kb_resource_service.create_kb_resource(kb_resource)
+
+@router.put('/{ownerId}')
+async def update_kb_resource(kb_resource: KBResourceIn):
+    return await kb_resource_service.update_kb_resource(kb_resource)
+
+@router.delete('/{kbResourceId}/{ownerId}')
+async def delete_kb_resource(kb_resource_id: str, owner_id: str):
+    return await kb_resource_service.delete_kb_resource(kb_resource_id)
