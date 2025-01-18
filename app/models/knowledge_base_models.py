@@ -50,6 +50,7 @@ class DBKnowledgeBase(BaseDocument):
     status=EnumField(KnowledgeBaseStatuses)
     tokensUsed=IntField()
     kbResources=ListField(ReferenceField('DBKbResource'))
+    chabots=ListField(ReferenceField('DBChabots'))
 
     meta = {'collection': 'knowledgeBase'}
 
@@ -61,7 +62,11 @@ class DBKbResource(BaseDocument):
     knowledgeBase=ReferenceField('DBKnowledgeBase',reverse_delete_rule=CASCADE)
     content=EmbeddedDocumentField(DBContent)
     tokensUsed=IntField()
+
     meta = {'collection': 'kbResource'}
 
+class DBChabots(BaseDocument):
+    name=StringField()
+    kbResources=ListField(ReferenceField('DBKbResource'))
 
 
