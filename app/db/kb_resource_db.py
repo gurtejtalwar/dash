@@ -32,4 +32,4 @@ async def update_kb_resource(kb_resource: KBResourceIn) -> DBKbResource:
 async def delete_kb_resource(kb_resource_id: str) -> DBKbResource:
     db_kb_resource = DBKbResource.objects(id=kb_resource_id).first()
     db_kb_resource.delete()
-    return convert_inbound(db_kb_resource)
+    return True
