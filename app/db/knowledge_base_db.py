@@ -28,4 +28,4 @@ async def update_knowledge_base(knowledge_base: KnowledgeBaseIn) -> DBKnowledgeB
 async def delete_knowledge_base(knowledge_base_id: str) -> DBKnowledgeBase: 
     db_knowledge_base = DBKnowledgeBase.objects(id=knowledge_base_id).first()
     db_knowledge_base.delete()
-    return convert_inbound(db_knowledge_base)
+    return True

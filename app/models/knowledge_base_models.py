@@ -42,9 +42,12 @@ class DBContent(EmbeddedDocument):
     answer = StringField()
     link = URLField()
 
+# class MetaDBKbResource(EmbeddedDocument):
+#     numOfSearches
 class DBKnowledgeBase(BaseDocument):
     name=StringField()
     ownerId=StringField()
+    description=StringField()
     type=EnumField(KnowledgeBaseTypes)
     model=EnumField(KnowledgeBaseModels)
     status=EnumField(KnowledgeBaseStatuses)
@@ -61,7 +64,9 @@ class DBKbResource(BaseDocument):
     data=StringField()
     knowledgeBase=ReferenceField('DBKnowledgeBase',reverse_delete_rule=CASCADE)
     content=EmbeddedDocumentField(DBContent)
+    chunks=IntField()
     tokensUsed=IntField()
+    # metadata=EmbeddedDocumentField(MetaDBKbResource)
 
     meta = {'collection': 'kbResource'}
 
