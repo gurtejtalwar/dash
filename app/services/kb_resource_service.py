@@ -13,8 +13,8 @@ async def get_kb_resource_by_id(kb_resource_id: str):
 async def get_kb_resources_by_knowledge_base(knowledge_base_id: str):
     return await kb_resource_db.get_kb_resources_by_knowledge_base(knowledge_base_id)
 
-async def get_kb_resources_by_owner(owner_id: str):
-    return await kb_resource_db.get_kb_resources_by_owner(owner_id)
+async def get_all_kb_resources_by_owner(owner_id: str):
+    return await kb_resource_db.get_all_kb_resources_by_owner(owner_id)
 
 async def create_kb_resource(kb_resource: KBResourceIn):
     data = await get_data(kb_resource)
