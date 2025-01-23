@@ -8,11 +8,11 @@ convert_inbound = convert_inbound_factory("knowledge_base_id")
 convert_outbound = convert_outbound_factory("knowledge_base_id")
 
 async def get_knowledge_base_by_id(knowledge_base_id: str) -> DBKnowledgeBase:
-    db_knowledge_base = await DBKnowledgeBase.objects(id=knowledge_base_id).first()
+    db_knowledge_base = DBKnowledgeBase.objects(id=knowledge_base_id).first()
     return convert_inbound(db_knowledge_base)
 
 async def get_all_knowledge_bases_by_owner(owner_id: str) -> List[DBKnowledgeBase]:
-    db_knowledge_bases = await DBKnowledgeBase.objects(owner_id=owner_id)
+    db_knowledge_bases = DBKnowledgeBase.objects(owner_id=owner_id)
     return [convert_inbound(db_knowledge_base) for db_knowledge_base in db_knowledge_bases]
 
 async def save_knowledge_base(knowledge_base: KnowledgeBaseIn) -> DBKnowledgeBase:
@@ -21,11 +21,11 @@ async def save_knowledge_base(knowledge_base: KnowledgeBaseIn) -> DBKnowledgeBas
     return convert_inbound(db_knowledge_base)
 
 async def update_knowledge_base(knowledge_base: KnowledgeBaseIn) -> DBKnowledgeBase:
-    db_knowledge_base = await DBKnowledgeBase.objects(id=knowledge_base.knowledge_base_id).first()
+    db_knowledge_base = DBKnowledgeBase.objects(id=knowledge_base.knowledge_base_id).first()
     db_knowledge_base.update(**convert_outbound(knowledge_base))
     return convert_inbound(db_knowledge_base)
 
 async def delete_knowledge_base(knowledge_base_id: str) -> DBKnowledgeBase: 
-    db_knowledge_base = await DBKnowledgeBase.objects(id=knowledge_base_id).first()
+    db_knowledge_base = DBKnowledgeBase.objects(id=knowledge_base_id).first()
     db_knowledge_base.delete()
     return convert_inbound(db_knowledge_base)
